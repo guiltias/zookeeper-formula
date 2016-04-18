@@ -79,7 +79,9 @@
     {%- set node_addr = zookeepers_hosts[i] %}
   {%- elif zookeepers_hosts[i] is sequence %}
     # if list provided, take the first value
-    {%- set node_addr = zookeepers_hosts[i] | first() %}
+    # NOTE: changed from first() to last() because during the highstate ip_addrs may work wrong
+    # try to find out more reliable way how to manage this
+    {%- set node_addr = zookeepers_hosts[i] | last() %}
   {%- else %}
     # skip any other values including nested dicts
     {%- set node_addr = '' %}
