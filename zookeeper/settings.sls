@@ -81,7 +81,7 @@
     # if list provided, take the first value
     # NOTE: changed from first() to last() because during the highstate ip_addrs may work wrong
     # try to find out more reliable way how to manage this
-    {%- set node_addr = zookeepers_hosts[i] | last() %}
+    {%- set node_addr = zookeepers_hosts[i] | first() %}
   {%- else %}
     # skip any other values including nested dicts
     {%- set node_addr = '' %}
